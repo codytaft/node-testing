@@ -1,13 +1,31 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+// const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.status(404).send({
+    error: 'Page not found',
+    name: 'Todo App v1.0'
+  });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port: ${port}!`);
+app.get('/users', (req, res) => {
+  res.status(200).send([
+    {
+      name: 'Cody Taft',
+      age: '32'
+    },
+    {
+      name: 'Jesse',
+      age: '33'
+    }
+  ]);
 });
+
+app.listen(3000, () => {
+  console.log(`Example app listening on port: 3000!`);
+});
+
+module.exports.app = app;
 
 //Run app, then load http://localhost:port in a browser to see the output.
